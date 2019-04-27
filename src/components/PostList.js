@@ -3,20 +3,21 @@ import { connect } from 'react-redux';
 
 import { fetchPosts } from '../actions';
 
-const PostList = ({ fetchPosts }) => {
+const { Fragment } = React;
+const PostList = ({ getPosts }) => {
     useEffect(() => {
-        fetchPosts();
-    }, []);
+        getPosts();
+    }, [getPosts]);
     return (
-        <>
+        <Fragment>
             <h1>Post List Component</h1>
-        </>
+        </Fragment>
     )
 }
 
 const mapDispatchToProps = dispatch => { 
     return {
-        fetchPosts: () => dispatch(fetchPosts())
+        getPosts: () => dispatch(fetchPosts())
     }
 }
 
