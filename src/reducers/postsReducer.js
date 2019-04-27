@@ -1,7 +1,8 @@
 export const postsReducer = (state = [], action) => {
-    if(action.type === 'FETCH_POSTS') {
-        state = [...action.payload.data];
-        return state;
+    switch (action.type) {
+        case 'FETCH_POSTS':
+            return [...action.payload.data];
+        default:
+            return state;
     }
-    return state;
 }

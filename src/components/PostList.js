@@ -1,18 +1,38 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
 import { fetchPosts } from '../actions';
 
 const { Fragment } = React;
-const PostList = ({ getPosts }) => {
+
+const card = ({ posts }) => {
+    return posts.map(d => {
+        const { id, title, body } = d;
+        return (
+            <div key={id}>
+                <h2>id = {id}</h2>
+                <p>title = {title}</p>
+                <p>body = {body}</p>
+            </div>
+        )
+    });
+}
+
+const PostList = ({ getPosts, posts }) => {
     useEffect(() => {
         getPosts();
     }, [getPosts]);
     return (
         <Fragment>
-            <h1>Post List Component</h1>
+            { card({ posts }) }
         </Fragment>
     )
+}
+
+const mapStateToProps = state => {
+    const { posts } = state;
+    return {
+        posts
+    }
 }
 
 const mapDispatchToProps = dispatch => { 
@@ -21,6 +41,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-// since mapDispatchToProps is an object
-// action creators are bound to dispatch automatically
-export default connect(null, mapDispatchToProps)(PostList);
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);
