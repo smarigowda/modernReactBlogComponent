@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 
 import { fetchPosts } from '../actions';
 
-const PostList = props => {
+const PostList = ({ fetchPosts }) => {
     useEffect(() => {
-        console.log('useEffect function called...');
-        // call action creator here
-        props.fetchPosts();
+        fetchPosts();
     }, []);
     return (
         <>
@@ -16,6 +14,12 @@ const PostList = props => {
     )
 }
 
+const mapDispatchToProps = dispatch => { 
+    return {
+        fetchPosts: () => dispatch(fetchPosts())
+    }
+}
+
 // since mapDispatchToProps is an object
 // action creators are bound to dispatch automatically
-export default connect(null, { fetchPosts })(PostList);
+export default connect(null, mapDispatchToProps)(PostList);
