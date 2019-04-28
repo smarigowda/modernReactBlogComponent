@@ -1,19 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
+import { Post } from './Post';
 
 const { Fragment } = React;
 
-const card = ({ posts }) => {
-    return posts.map(d => {
-        const { id, title, body } = d;
-        return (
-            <div key={id}>
-                <h2>id = {id}</h2>
-                <p>title = {title}</p>
-                <p>body = {body}</p>
-            </div>
-        )
+const renderPosts = ({ posts }) => {
+    console.log(posts);
+    return posts.map(post => {
+        return <Post key={post.id} {...post}/>
     });
 }
 
@@ -23,7 +18,7 @@ const PostList = ({ getPosts, posts }) => {
     }, [getPosts]);
     return (
         <Fragment>
-            { card({ posts }) }
+            { renderPosts({ posts }) }
         </Fragment>
     )
 }
