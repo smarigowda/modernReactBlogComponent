@@ -4,7 +4,7 @@ export const Post = ({ title, body }) => {
     return (
         <div className={styles.container}>
             <i className="fas fa-user"></i>
-            <div>
+            <div className={styles.content}>
                 <h2>{title}</h2>
                 <p>{body}</p>
             </div>

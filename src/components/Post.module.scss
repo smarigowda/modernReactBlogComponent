@@ -1,12 +1,19 @@
 .container {
     display: grid;
     grid-template-columns: 150px 1fr;
+    grid-template-rows: 100px;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
     align-items: center;
 
     & i {
         font-size: 3rem;
         color: lightgrey;
-        padding: 1rem;
         text-align: center;
+    }
+
+    .content {
+        display: grid;
+        grid-gap: 1rem;
     }
 }
