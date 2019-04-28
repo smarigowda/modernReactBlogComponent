@@ -10,9 +10,7 @@ const renderPosts = ({ posts }) => {
     console.log(posts);
     return posts.map(post => {
         return (
-            <div>
-                <Post key={post.id} {...post}/>
-            </div>
+            <Post key={post.id} {...post} />
         )
     });
 }
@@ -23,7 +21,7 @@ const PostList = ({ getPosts, posts }) => {
     }, [getPosts]);
     return (
         <Fragment>
-            { renderPosts({ posts }) }
+            {renderPosts({ posts })}
         </Fragment>
     )
 }
@@ -35,7 +33,7 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => { 
+const mapDispatchToProps = dispatch => {
     return {
         getPosts: () => dispatch(fetchPosts())
     }
