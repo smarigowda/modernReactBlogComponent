@@ -1,15 +1,16 @@
 .container {
     display: grid;
     grid-template-columns: 150px 1fr;
-    grid-template-rows: 100px;
+    grid-template-rows: 150px;
     grid-gap: 1rem;
     margin-bottom: 1rem;
     align-items: center;
     border-bottom: 1px solid lightgray;
+    background-color: lightblue;
 
     & i {
         font-size: 3rem;
-        color: lightgrey;
+        color: white;
         text-align: center;
     }
 

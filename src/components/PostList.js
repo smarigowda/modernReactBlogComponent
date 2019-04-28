@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 import { Post } from './Post';
 
+
 const { Fragment } = React;
 
 const renderPosts = ({ posts }) => {
     console.log(posts);
     return posts.map(post => {
-        return <Post key={post.id} {...post}/>
+        return (
+            <div>
+                <Post key={post.id} {...post}/>
+            </div>
+        )
     });
 }
 
