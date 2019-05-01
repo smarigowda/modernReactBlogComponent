@@ -2,13 +2,13 @@ import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 
-const UserHeader = ({ getUser, userId }) => {
-    const getUserMemoised = useCallback(() => getUser({ userId }), [] );
+const UserHeader = ({ getUser, userId, users }) => {
     useEffect(() => {
-        getUserMemoised();
+        getUser({ userId });
     }, []);
+    const user = users.find(user => user.id === userId);
     return (
-        <h1>User: x</h1>
+        <h1>{user ? user.name : null}</h1>
     )
 }
 
@@ -18,4 +18,10 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(UserHeader);
+const mapStateToProps = state => {
+    return {
+        users: state.users
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserHeader);
