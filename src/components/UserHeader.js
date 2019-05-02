@@ -2,11 +2,10 @@ import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 
-const UserHeader = ({ getUser, userId, users }) => {
+const UserHeader = ({ getUser, userId, user }) => {
     useEffect(() => {
         getUser({ userId });
     }, []);
-    const user = users.find(user => user.id === userId);
     return (
         <h1>{user ? user.name : null}</h1>
     )
@@ -18,9 +17,9 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        users: state.users
+        user: state.users.find(user => user.id === ownProps.userId)
     }
 }
 
