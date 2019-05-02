@@ -7,7 +7,7 @@ import { Post } from './Post';
 const { Fragment } = React;
 
 const renderPosts = ({ posts }) => {
-    console.log(posts);
+    // console.log(posts);
     return posts.map(post => {
         return (
             <Post key={post.id} {...post} />
