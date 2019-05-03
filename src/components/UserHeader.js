@@ -1,11 +1,11 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 
 const UserHeader = ({ getUser, userId, user }) => {
     useEffect(() => {
         getUser({ userId });
-    }, []);
+    }, [getUser, userId]);
     return (
         <h1>{user ? user.name : null}</h1>
     )

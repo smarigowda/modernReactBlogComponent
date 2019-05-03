@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import { fetchPostsAndUsers } from '../actions';
 import { Post } from './Post';
 
 
@@ -15,10 +15,10 @@ const renderPosts = ({ posts }) => {
     });
 }
 
-const PostList = ({ getPosts, posts }) => {
+const PostList = ({ getPostsAndUsers, posts }) => {
     useEffect(() => {
-        getPosts();
-    }, [getPosts]);
+        getPostsAndUsers();
+    }, [getPostsAndUsers]);
     return (
         <Fragment>
             {renderPosts({ posts })}
@@ -35,7 +35,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getPosts: () => dispatch(fetchPosts())
+        getPostsAndUsers: () => dispatch(fetchPostsAndUsers())
     }
 }
 
