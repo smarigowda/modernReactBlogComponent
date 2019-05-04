@@ -1,5 +1,6 @@
 // import _ from 'lodash';
 import jsonPlaceholder from '../apis/jsonPlaceholder';
+import _ from 'lodash';
 
 export const fetchPosts = () => {
     return async dispatch => {
@@ -41,10 +42,15 @@ export const fetchUser = ({ userId }) => {
 // });
 
 export const fetchPostsAndUsers = () => {
-    return async dispatch => {
-        console.log('-- about to fetch posts...');
+    return async (dispatch, getState) => {
         await dispatch(fetchPosts());
-        console.log('-- fetched posts...');
+        const state = getState();
+        const userIds = state.posts.map(d => d.userId);
+        const uniqUserIds = _.uniq(userIds);
+        console.log(uniqUserIds);
+        uniqUserIds.forEach(userId => {
+            dispatch(fetchUser({ userId }));
+        })
 
         // const { data } = await jsonPlaceholder.get(`/posts`);
         // dispatch({
